@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Best Friend Ragini</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .navbar a:hover {
+            color: #ff7eb9;
+        }
+        
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff7eb9;
+            transition: width 0.3s ease;
+        }
+        
+        .navbar a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517409419131-4034293f25c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTgzMTN8MHwxfHNlYXJjaHw0fHxmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHx8fDE3MjI1NTIwOTl8MA&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: #ff7eb9;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            animation: fadeIn 2.5s ease;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background: #ff7eb9;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 126, 185, 0.4);
+            animation: fadeIn 3s ease;
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 126, 185, 0.6);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 50px;
+            background: rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            color: #ff7eb9;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ff7eb9;
+        }
+        
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .about-image img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Memories Section */
+        .memories {
+            padding: 100px 50px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            height: 300px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Qualities Section */
+        .qualities {
+            padding: 100px 50px;
+            background: rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+        
+        .qualities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+        
+        .quality-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .quality-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 126, 185, 0.15);
+        }
+        
+        .quality-icon {
+            font-size: 2.5rem;
+            color: #ff7eb9;
+            margin-bottom: 20px;
+        }
+        
+        .quality-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff7eb9;
+        }
+        
+        /* Friendship Quote */
+        .quote {
+            padding: 100px 50px;
+            text-align: center;
+            background: url('rag10.png') no-repeat center center/cover fixed;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .quote-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            color: #ff7eb9;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .footer p {
+            margin-bottom: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #ff7eb9;
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .sticker {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.8;
+            z-index: 2;
+            animation: float 5s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar a {
+                margin: 0 10px;
+                font-size: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .about, .memories, .qualities, .quote {
+                padding: 70px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .qualities-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* This will center all cards including the last row */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+}
+
+.quality-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 250px; /* Fixed width for flexbox layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About Ragini</a>
+        <a href="#memories">Gallery</a>
+        <a href="#qualities">Her Qualities</a>
+        <a href="#quote">Friendship Quote</a>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Stickers -->
+        <div class="sticker" style="top: 20%; left: 10%;">✨</div>
+        <div class="sticker" style="top: 15%; right: 15%;">💖</div>
+        <div class="sticker" style="bottom: 25%; left: 15%;">🌸</div>
+        <div class="sticker" style="bottom: 30%; right: 10%;">🌷</div>
+        
+        <div class="hero-content">
+            <h1>Behold my confidante</h1>
+            <p>Allow me to introduce my closest ally, a paragon of genuine warmth and profound compassion.</p>
+            <a href="#about" class="hero-btn">Discover Her Magic</a>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About My Sunshine</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Ragini is the kindest, most beautiful soul inside and out. Her smile lights up any room, and her positive energy is infectious. She's someone who is always there, offering love, laughter, and endless support.</p>
+                <p>She is incredibly talented, smart, and always knows how to turn a bad day into a good one. Whether it's through her caring words or just her presence, Ragini has the ability to make people feel special and important.</p>
+                <p>Her passion for life is unmatched, and she inspires me every day to be a better person. With her bubbly personality, contagious laugh, and heart full of compassion, she brings joy to everyone around her.</p>
+            </div>
+            <div class="about-image">
+                <img src="rag1.jpg" alt="Raini Image 1">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Memories Section -->
+    <section id="memories" class="memories">
+        <h2 class="section-title">Precious soul</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="rag2.jpg" alt="Memory 1">
+            </div>
+            <div class="gallery-item">
+                <img src="rag3.png" alt="Memory 2">
+            </div>
+            <div class="gallery-item">
+                <img src="rag4.png" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="rag5.png" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="rag6.png" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="rag7.png" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="rag8.png" alt="Memory 3">
+            </div>
+            <div class="gallery-item">
+                <img src="rag9.png" alt="Memory 3">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Qualities Section -->
+    <section id="qualities" class="qualities">
+        <h2 class="section-title">Her Beautiful Qualities</h2>
+        <div class="qualities-container">
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Kind Hearted</h3>
+                <p>Ragini has the most compassionate heart that cares for everyone around her.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-laugh-beam"></i>
+                </div>
+                <h3>Infectious Laughter</h3>
+                <p>Her laughter can brighten up the darkest days and bring joy to any situation.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Always Supportive</h3>
+                <p>No matter what, Ragini is always there to support and encourage her friends.</p>
+            </div>
+            <div class="quality-card">
+                <div class="quality-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Incredibly Smart</h3>
+                <p>She has a brilliant mind that never fails to impress everyone around her.</p>
+            </div>
+
+            <div class="quality-card" style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; padding: 20px; margin: 20px auto; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: linear-gradient(135deg, #fdfcfb, #e2d1c3);">
+    <div class="quality-icon" style="font-size: 2rem; color: #ff6b8b; margin-bottom: 15px;">
+        <i class="fas fa-laugh-beam"></i>
+    </div>
+    <h3 style="margin-bottom: 10px; color: #ff6b8b;">This is my best friend</h3>
+    <p style="color: #666;">A truly magnificent person whose character shines with exceptional grace and benevolence.</p>
+</div>
+
+        </div>
+    </section>
+    
+    <!-- Quote Section -->
+    <section id="quote" class="quote">
+        <div class="quote-content">
+            <p class="quote-text">"A true friend is the greatest of all blessings, and the one that we take the least care of all to acquire."</p>
+            <p class="quote-text">- François de La Rochefoucauld</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Made with 💖 for the most amazing friend in the world</p>
+        <p>Ragini, you're my sunshine forever!</p>
+        <div class="social-icons">
+                <a href="https://www.instagram.com/ragini__chavan/" class="instagram-btn" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add more stickers dynamically
+        function addStickers() {
+            const stickers = ['🌟', '💕', '🌺', '🦋', '💫', '🌼', '🥰', '✨'];
+            const container = document.body;
+            
+            for (let i = 0; i < 10; i++) {
+                const sticker = document.createElement('div');
+                sticker.className = 'sticker';
+                sticker.innerHTML = stickers[Math.floor(Math.random() * stickers.length)];
+                
+                sticker.style.left = Math.random() * 100 + '%';
+                sticker.style.top = Math.random() * 100 + '%';
+                sticker.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                sticker.style.animationDelay = (Math.random() * 5) + 's';
+                
+                container.appendChild(sticker);
+            }
+        }
+        
+        // Call the function to add stickers
+        addStickers();
+    </script>
+</body>
+</html>
